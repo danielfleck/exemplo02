@@ -1,0 +1,6 @@
+$proxy_enabled = true 
+$proxy_host   = "proxy02.pmpr.parana"
+$proxy_port   = "8080"
+$proxy_user   = "usuario"
+$proxy_passwd = "senha"
+$proxy_url    = "http://usuario:senha@proxy02.pmpr.parana:8080"

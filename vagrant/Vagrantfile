@@ -1,0 +1,66 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# O número "2" entre aspas representa apenas a versão do objeto config
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  # ambiente com o php 5.3 
+  config.vm.box = "precise32-desenv-v1.1"
+  config.vm.box_url = "http://vagrantboxes.desenv.pmpr.parana/precise32-desenv-v1.1.box"
+
+  # ambiente com o php 5.5 (comente a configuração anterior para testar esta versão)
+  #config.vm.box = "saucy32-desenv"  
+  #config.vm.box_url = "http://vagrantboxes.desenv.pmpr.parana/saucy32-desenv.box"
+  
+  config.vm.network :forwarded_port, guest: 80, host: 8080    # http
+  config.vm.network :forwarded_port, guest: 3306, host: 3333  # mysql
+  config.vm.network :forwarded_port, guest: 5432, host: 5454  # postgresql
+
+  # Configurações de rede da máquina virtual
+
+  # Brigded ou pública = a máquina virtual assumirá um ip válido através do dhcp da rede
+  config.vm.network :public_network
+
+  # Hostonly = a máquina virtual assumirá um ip dentro da rede privada do host
+  #            caso seja definido um ip ela criará uma rede interna com aquele
+  #            ip
+  #config.vm.network :hostonly, "10.11.12.13"
+
+
+  # Pastas que serão compartilhadas com a máquina virtual
+  # config.vm.synced_folder "caminho/para/pasta/no/host",
+  # "caminho/para/montagem/no/guest"
+  config.vm.synced_folder "../", "/home/vagrant/projeto",:mount_options=>["dmode=777","fmode=777"]
+
+
+  config.vm.provider :virtualbox do |vb|
+     # O comando abaixo faz com que seja exibida a interface gráfica
+     # da máquina virtual ao executar o comando vagrant up
+     #vb.gui = true
+
+     # Customizações da máquina virtual:
+
+     # Nome da máquina virtual:
+     #vb.customize ["modifyvm", :id, "--name", "Projeto"]
+
+     # Número de Processadores:
+         #vb.customize ["modifyvm", :id, "--cpus", "4"]
+
+         # Memória:
+     vb.customize ["modifyvm", :id, "--memory", "512"]
+
+  end
+
+  config.vm.provision :puppet do |puppet|
+    puppet.manifests_path = "manifests"
+    puppet.manifest_file  = "site.pp"
+    # modulos do puppet
+    puppet.module_path = "./modules"
+  
+    # debug
+    puppet.options = "--verbose"
+  end
+
+end

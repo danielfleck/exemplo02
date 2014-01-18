@@ -1,0 +1,13 @@
+<Virtualhost *:80>
+    VirtualDocumentRoot "/projeto"
+    ServerAlias raiz.projeto.desenv.local
+    ServerName raiz.projeto.desenv.local
+    AssignUserID vagrant vagrant
+    UseCanonicalName Off
+    <Directory "/projeto">
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+</Virtualhost>
