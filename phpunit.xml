@@ -22,7 +22,7 @@
     <testsuites>
         <testsuite name="Suite de Testes do Projeto">
             <!-- Arquivos que compõe a suite de teste -->
-            <directory suffix="Test.php">tests</directory>
+            <directory suffix="Test.php">./tests/</directory>
         </testsuite>
     </testsuites>
 
@@ -35,16 +35,16 @@
 
     <!-- Arquivos que serão considerados para elaboração do relatório de cobertura dos testes -->
     <filter>
-        <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">protected/controllers</directory>
-            <directory suffix=".php">protected/models</directory>
-            <!--<exclude>
-                <directory suffix=".php">protected/migrations</directory>
-                <directory suffix=".php">protected/runtime</directory>
-                <directory suffix=".php">protected/tests</directory>
-                <directory suffix=".php">protected/views</directory>
+        <blacklist>
+            <directory>./vendor/</directory>
+            <directory>./tests/</directory>
+        </blacklist>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src/</directory>
+            <!-- <exclude>
+                <directory>vendor</directory>
                 <file>yiic.php</file>
-            </exclude>-->
+            </exclude> -->
         </whitelist>
     </filter>
 </phpunit>
