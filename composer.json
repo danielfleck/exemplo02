@@ -1,0 +1,24 @@
+{
+    "name": "danielfleck/exemplo02",
+    "description": "Descricao do projeto",
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "authors": [
+        {
+            "name": "Daniel Rodrigo Fleck",
+            "email": "danielfleck@gmail.com"
+        }
+    ],
+    "require": {
+
+    },
+    "config": {
+        "bin-dir": "bin/"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    }
+}

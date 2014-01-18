@@ -3,3 +3,4 @@ vagrant/.vagrant/**/*
 /composer.phar
 /bin/
 /composer.lock
+/build/

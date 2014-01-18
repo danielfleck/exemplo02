@@ -1,0 +1,50 @@
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/3.7/phpunit.xsd"
+
+    backupGlobals="false"
+    backupStaticAttributes="false"
+    bootstrap="public/bootstrap.php"
+    colors="false"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    forceCoversAnnotation="false"
+    processIsolation="false"
+    stopOnError="false"
+    stopOnFailure="false"
+    stopOnIncomplete="false"
+    stopOnSkipped="false"
+    strict="false"
+    verbose="false">
+
+    <!-- Serão considerados arquivos de teste os arquivos encontrados nas sites abaixo -->
+    <testsuites>
+        <testsuite name="Suite de Testes do Projeto">
+            <!-- Arquivos que compõe a suite de teste -->
+            <directory suffix="Test.php">tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- Gerador de relatório de cobertura de código -->
+    <logging>
+        <log type="coverage-clover" target="build/logs/clover.xml" />
+        <log type="coverage-html" target="build/coverage" title="Título do Relatório" />
+        <log type="junit" target="build/logs/junit.xml" />
+    </logging>
+
+    <!-- Arquivos que serão considerados para elaboração do relatório de cobertura dos testes -->
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">protected/controllers</directory>
+            <directory suffix=".php">protected/models</directory>
+            <!--<exclude>
+                <directory suffix=".php">protected/migrations</directory>
+                <directory suffix=".php">protected/runtime</directory>
+                <directory suffix=".php">protected/tests</directory>
+                <directory suffix=".php">protected/views</directory>
+                <file>yiic.php</file>
+            </exclude>-->
+        </whitelist>
+    </filter>
+</phpunit>
