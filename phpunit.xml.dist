@@ -5,7 +5,7 @@
     backupGlobals="false"
     backupStaticAttributes="false"
     bootstrap="public/bootstrap.php"
-    colors="false"
+    colors="true"
     convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"
     convertWarningsToExceptions="true"
