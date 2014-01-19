@@ -24,8 +24,7 @@ php:
 #  - DB=pgsql
   
 install:
-  - composer self-update && composer --version
-  - composer install --dev -v
+  - make install-dev
 
 # execute any number of scripts before the test run, custom env's are available as variables
 #before_script:

@@ -20,23 +20,33 @@ clean:
 	rm -f composer.phar
 	rm -f composer.lock
 	rm -rf $(VENDOR_DIR)
-	rm -f bin/phpunit
-#	rm -f bin/phpcs
+	rm -rf $(BIN_DIR)
 
 test: .check-installation
-	$(PHPUNIT)
-
+	$(PHPUNIT) -v -c phpunit.xml
+	
+tap: .check-installation
+	$(PHPUNIT) --tap -v -c phpunit.xml
+	
 testdox: .check-installation
-	$(PHPUNIT) --testdox
-
+	$(PHPUNIT) --testdox -v -c phpunit.xml
+	
 coverage: .check-installation
-	$(PHPUNIT) --coverage-text
+	$(PHPUNIT) -v -c phpunit.xml.dist
 
 install: clean .check-composer
 	@echo "Executing a composer installation of development dependencies.."
-	$(COMPOSER) install --dev
+	$(COMPOSER) install
 
 update: .check-installation
+	@echo "Executing a composer update of development dependencies.."
+	$(COMPOSER) update
+	
+install-dev: clean .check-composer
+	@echo "Executing a composer installation of development dependencies.."
+	$(COMPOSER) install --dev
+
+update-dev: .check-installation
 	@echo "Executing a composer update of development dependencies.."
 	$(COMPOSER) update --dev
 
@@ -46,4 +56,4 @@ update: .check-installation
 # code-sniffer-report: .check-installation
 # 	$(PHPCS) --report-summary --report-source --report-gitblame --standard=$(PHPCS_STANDARD) src
 
-.PHONY: test clean testdox coverage install update code-sniffer code-sniffer-report
+.PHONY: test tap clean testdox coverage install update code-sniffer code-sniffer-report
