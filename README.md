@@ -1,3 +1,6 @@
+ESQUELETO DE APLICAÇÃO PHP [![Build Status](https://travis-ci.org/danielfleck/exemplo02.png?branch=master)](https://travis-ci.org/danielfleck/exemplo02)
+==========================
+
 As alterações relativas ao modelo devem ser feitas no repositório gitolite@10.47.0.72:esqueleto-app.git. Estas são automaticamente lançadas no endereço 10.47.0.72/git-downloads/esqueleto-app.tar.gz
 
 
